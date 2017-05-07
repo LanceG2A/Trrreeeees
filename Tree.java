@@ -75,16 +75,36 @@ public class Tree {
 			return minimum(r.left);
 		}
 	}
-	public static TreeNode delete(TreeNode r, String s){
-		if(r.data.compareTo(s) > 0){
-			r.left = delete(r.left, s);
+	public void delete(String s){
+		root = delete(root, s);
+	}
+	public TreeNode delete(TreeNode node, String s){
+		if(node.data.compareTo(s) < 0){
+			node.right = delete(node.right, s);
 		}
-		else if(r.data.compareTo(s) < 0){
-			r.right = delete(r.right, s);
+		else if(node.data.compareTo(s) > 0){
+			node.left = delete(node.left, s);
 		}
 		else{
-			
+			if(node.right == null){
+				return node.left;
+			}
+			if(node.left == null){
+				return node.right;
+			}
+			TreeNode temp = node;
+			node = minimum(node.right);
+			node.right = deleteMinimum(node.right);
+			node.left = temp.left;
 		}
+		return node;
+	}
+	private TreeNode deleteMinimum(TreeNode node){
+		if(node.left == null){
+			return node.right;
+		}
+		node.left = deleteMinimum(node.left);
+		return node;
 	}
 	public boolean search(String s){
 		TreeNode temp = root;
