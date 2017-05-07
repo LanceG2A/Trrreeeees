@@ -10,6 +10,22 @@ public class TreeTest {
 			testTree.Insert(test[i]);
 		}
 		testTree.Traversal();
+		testTree.delete("makes");
+		testTree.Traversal();
+		if(testTree.search("because")){
+			System.out.println("Found node containing: because");
+		}
+		else{
+			System.out.println("Node not found");
+		}
+		
+		if(testTree.search("makes")){
+			System.out.println("Found node containing: makes");
+		}
+		else{
+			System.out.println("Node not found");
+		}
+		
 
 	}
 

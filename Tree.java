@@ -21,7 +21,7 @@ public class Tree {
 				insertRecursive(r.left, newNode);
 			}
 		}
-		else{
+		else if(r.data.compareTo(newNode.data) < 0){
 			if(r.right == null){
 				r.right = newNode;
 				return;
@@ -30,29 +30,12 @@ public class Tree {
 				insertRecursive(r.right, newNode);
 			}
 		}
-	}
-		/*TreeNode temp = root;//start at root
-		while(true){
-			if(s.compareTo(temp.data) < 0){//less than, go left
-				if(temp.left != null){
-					temp = temp.left;
-				}else{
-					temp.left = new TreeNode(s);
-					break;
-				}
-			}
-			else if(s.compareTo(temp.data) > 0){//greater than, go right
-				if(temp.right != null){
-					temp = temp.right;
-				}else{
-					temp.right = new TreeNode(s);
-					break;
-				}
-			}else{
-				break;
-			}
-		}	
-	}*/
+		else{
+			return;
+		}
+		}
+	
+
 	//Traversal method, in order
 	public void Traversal(){
 		TreeNode temp = root;
@@ -107,27 +90,23 @@ public class Tree {
 		return node;
 	}
 	public boolean search(String s){
+		System.out.println("Searching for: " + s);
 		TreeNode temp = root;
-		if(temp.data == s){
-			return true;
-		}
-		else if(temp.data.compareTo(s) > 0){
-			if(temp.left == null){
-				return false;
+		while(temp != null){
+			if(temp.data == s){
+				return true;
 			}
-			else{
-				return search(temp.left.data);
+			else if(temp.data.compareTo(s) > 0){
+				temp = temp.left;
 			}
-		}
-		else if(temp.data.compareTo(s) < 0){
-			if(temp.right == null){
-				return false;
+			else if(temp.data.compareTo(s) < 0){
+				temp = temp.right;
 			}
-			else{
-				return search(temp.right.data);
-			}
-		}
-		return false;
 	}
+		return false;
+		
+
+	}
+
 
 }
