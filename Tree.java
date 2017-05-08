@@ -31,6 +31,7 @@ public class Tree {
 			}
 		}
 		else{
+			r.count++;
 			return;
 		}
 		}
@@ -38,8 +39,7 @@ public class Tree {
 
 	//Traversal method, in order
 	public void Traversal(){
-		TreeNode temp = root;
-		inOrderTraversal(temp);
+		inOrderTraversal(root);
 	}
 	private void inOrderTraversal(TreeNode x){
 		if(x.left != null){
@@ -106,6 +106,18 @@ public class Tree {
 		return false;
 		
 
+	}
+	public void frequency(){
+		free(root);
+	}
+	public void free(TreeNode x){
+		if(x.left != null){
+			free(x.left);
+		}
+		System.out.println(x.data + " " + x.count);
+		if(x.right != null){
+			free(x.right);
+		}
 	}
 
 
